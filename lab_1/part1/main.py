@@ -3,9 +3,10 @@ import argparse
 
 def read_file(file_path):
     """
-    
-    :param file_path: 
-    :return: 
+    Reads the content of a file and returns the text.
+
+    :param file_path: Path to the file to be read.
+    :return: Content of the file as a string.
     """
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read().strip()
@@ -13,10 +14,10 @@ def read_file(file_path):
 
 def write_file(file_path, text):
     """
+    Writes text to a file.
 
-    :param file_path:
-    :param text:
-    :return:
+    :param file_path: Path to the file where the text will be written.
+    :param text: Text to be written to the file.
     """
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(text)
@@ -24,8 +25,9 @@ def write_file(file_path, text):
 
 def parse_arguments():
     """
+    Parses command-line arguments and returns them.
 
-    :return:
+    :return: An object containing the command-line arguments.
     """
     parser = argparse.ArgumentParser(description="Encrypting text using the Vigenere cipher")
     parser.add_argument("text", type=str, help="Text to encrypt")
@@ -41,14 +43,14 @@ class UpgradeCesarCipher:
 
     @staticmethod
     def prepare_key(key):
-        """ """
+        """ Prepares the key for use in the cipher. """
         if not all('А' <= char <= 'я' for char in key):
             raise ValueError("Key must consist of russian letters")
         return key.upper()
 
     @staticmethod
     def shift_char(char, shift):
-        """ """
+        """ Shifts a character by a given number of positions in the alphabet. """
         if 'А' <= char <= 'Я':
             start = ord('А')
             return chr(start + (ord(char) - start + shift) % 32)
@@ -58,7 +60,7 @@ class UpgradeCesarCipher:
         return char
 
     def encrypt(self, text):
-        """ """
+        """ Encrypts the text using the key. """
         if not text:
             raise ValueError("Text for encrypt can not be empty")
 
@@ -81,7 +83,7 @@ class UpgradeCesarCipher:
         return ''.join(encrypted_text)
 
     def decrypt(self, decrypt_text):
-        """ """
+        """ Decrypts the text using the key. """
         if not decrypt_text:
             raise ValueError("Text for decrypt can not be empty")
 
