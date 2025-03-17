@@ -29,7 +29,7 @@ def parse_arguments():
 
     :return: An object containing the command-line arguments.
     """
-    parser = argparse.ArgumentParser(description="Encrypting text using the Vigenere cipher")
+    parser = argparse.ArgumentParser(description="Encrypting text using the Upgrade Cesar cipher")
     parser.add_argument("text", type=str, help="Text to encrypt")
     parser.add_argument("key", type=str, help="Encryption key")
     parser.add_argument("encrypt_text", type=str, help="Cipher text")
