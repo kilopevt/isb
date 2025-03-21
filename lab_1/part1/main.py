@@ -43,14 +43,25 @@ class UpgradeCesarCipher:
 
     @staticmethod
     def prepare_key(key):
-        """ Prepares the key for use in the cipher. """
+        """
+        Prepares the key for use in the cipher.
+
+        :param key: The key that needs to be prepared
+        :return: Key in upper case
+        """
         if not all('А' <= char <= 'я' for char in key):
             raise ValueError("Key must consist of russian letters")
         return key.upper()
 
     @staticmethod
     def shift_char(char, shift):
-        """ Shifts a character by a given number of positions in the alphabet. """
+        """
+        Shifts a char by a given number of positions in the alphabet.
+
+        :param char: Char that will shift
+        :param shift: How much we shift the char
+        :return: Another char with shift
+        """
         if 'А' <= char <= 'Я':
             start = ord('А')
             return chr(start + (ord(char) - start + shift) % 32)
@@ -60,7 +71,12 @@ class UpgradeCesarCipher:
         return char
 
     def encrypt(self, text):
-        """ Encrypts the text using the key. """
+        """
+        Encrypts the text using the key.
+
+        :param text: Text that will encrypt
+        :return: Encrypted text
+        """
         if not text:
             raise ValueError("Text for encrypt can not be empty")
 
@@ -83,7 +99,12 @@ class UpgradeCesarCipher:
         return ''.join(encrypted_text)
 
     def decrypt(self, decrypt_text):
-        """ Decrypts the text using the key. """
+        """
+        Decrypts the text using the key.
+
+        :param decrypt_text: Text that will decrypt
+        :return: Decrypted text
+        """
         if not decrypt_text:
             raise ValueError("Text for decrypt can not be empty")
 
