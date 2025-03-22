@@ -1,4 +1,5 @@
 import argparse
+import configparser
 import json
 
 
@@ -95,7 +96,10 @@ def main():
             sorted_dict[key] = percent_dict[key]
         # print(sorted_dict)
 
-        key_file = 'key.json'
+        # read the constant from file
+        config = configparser.ConfigParser()
+        config.read('consts.txt')
+        key_file = config['DEFAULT']['KEY_FILE']
         key = read_json(key_file)
 
         text = decrypt_text(text, key)
