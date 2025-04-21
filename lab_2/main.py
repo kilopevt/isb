@@ -7,12 +7,13 @@ from consts import *
 
 def write_result(filename, test_name, p_value, conclusion):
     """
+    Writes results to a file.
 
-    :param filename:
-    :param test_name:
-    :param p_value:
-    :param conclusion:
-    :return:
+    :param filename: File name to save result
+    :param test_name: Test type name
+    :param p_value: Numeric value of p_value
+    :param conclusion: Test conclusion (passed/failed)
+    :return: File with tests results
     """
     try:
         with open(filename, mode='a', encoding="utf-8") as f:
@@ -25,9 +26,10 @@ def write_result(filename, test_name, p_value, conclusion):
 
 def frequency_test(sequence):
     """
+    Performs the frequency (monobit) test for randomness on a binary sequence.
 
-    :param sequence:
-    :return:
+    :param sequence: Binary string to test
+    :return: P-value
     """
     length = len(sequence)
     summ = 0.0
@@ -45,9 +47,10 @@ def frequency_test(sequence):
 
 def runs_test(sequence):
     """
+    Tests for randomness by examining the number of identical consecutive bits.
 
-    :param sequence:
-    :return:
+    :param sequence: Binary string to test
+    :return: P-value
     """
     length = len(sequence)
     ones = sequence.count('1')
@@ -70,9 +73,10 @@ def runs_test(sequence):
 
 def longest_run_test(sequence):
     """
+    Analyzes the sequence for long runs of identical bits using block testing.
 
-    :param sequence:
-    :return:
+    :param sequence: Binary string to test
+    :return: P-value
     """
     length = len(sequence)
     num_blocks = length // BLOCK_LENGTH
@@ -112,10 +116,11 @@ def longest_run_test(sequence):
 
 def tests(sequence, filename):
     """
+    Executes all three randomness tests on the given sequence and saves results to file.
 
-    :param sequence:
-    :param filename:
-    :return:
+    :param sequence: Binary string to test
+    :param filename: Output file name for test results
+    :return: None
     """
     with open(filename, 'w') as f:
         f.write(f"Testing sequence: {sequence[:20]}...\n\n")
