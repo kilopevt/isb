@@ -1,0 +1,14 @@
+Testing sequence: 11101111010000000100...
+
+Test: Bit frequency test
+P-value: 0.5958830905651779
+Conclusion: Passed
+
+Test: Test for identical consecutive bits
+P-value: 0.49413308325059246
+Conclusion: Passed
+
+Test: Test for the longest sequence of ones in a block
+P-value: 0.5206834142034595
+Conclusion: Passed
+
