@@ -14,10 +14,11 @@ class Encryptor:
 
     def decrypt_symmetric_key(self, encrypted_key_path, private_key_path):
         """
+        Decrypts the symmetric encryption key using RSA private key
 
-        :param encrypted_key_path:
-        :param private_key_path:
-        :return:
+        :param encrypted_key_path: Path to the encrypted symmetric key file
+        :param private_key_path: Path to the RSA private key PEM file
+        :return: Decrypted symmetric key
         """
         try:
             with open(private_key_path, 'rb') as f:
@@ -44,11 +45,11 @@ class Encryptor:
 
     def encrypt_file(self, input_file_path, output_file_path, symmetric_key):
         """
+        Encrypts a file using Camellia CBC mode encryption
 
-        :param input_file_path:
-        :param output_file_path:
-        :param symmetric_key:
-        :return:
+        :param input_file_path: Path to the plaintext input file
+        :param output_file_path: Path to save the encrypted output file
+        :param symmetric_key: Encryption key to use
         """
         try:
             iv = os.urandom(16)
@@ -78,12 +79,12 @@ class Encryptor:
     def encrypt(self, input_file_path, private_key_path,
                 encrypted_key_path, output_file_path):
         """
+        Main encryption workflow - decrypts symmetric key then encrypts file
 
-        :param input_file_path:
-        :param private_key_path:
-        :param encrypted_key_path:
-        :param output_file_path:
-        :return:
+        :param input_file_path: Path to plaintext file to encrypt
+        :param private_key_path: Path to RSA private key for key decryption
+        :param encrypted_key_path: Path to encrypted symmetric key file
+        :param output_file_path: Path to save encrypted output
         """
         try:
             # decrypt sym key

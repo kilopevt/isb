@@ -13,10 +13,11 @@ class Decryptor:
 
     def decrypt_symmetric_key(self, encrypted_key_path, private_key_path):
         """
+        Decrypts the symmetric key using RSA private key
 
-        :param encrypted_key_path:
-        :param private_key_path:
-        :return:
+        :param encrypted_key_path: Path to the encrypted symmetric key file
+        :param private_key_path: Path to the RSA private key file
+        :return: Decrypted symmetric key
         """
         try:
             with open(private_key_path, 'rb') as f:
@@ -44,11 +45,11 @@ class Decryptor:
 
     def decrypt_file(self, input_file_path, output_file_path, symmetric_key):
         """
+        Decrypts a file using Camellia symmetric encryption
 
-        :param input_file_path:
-        :param output_file_path:
-        :param symmetric_key:
-        :return:
+        :param input_file_path: Path to the encrypted input file
+        :param output_file_path: Path to save the decrypted output file
+        :param symmetric_key: Symmetric key for decryption
         """
         try:
             with open(input_file_path, 'rb') as infile:
@@ -75,12 +76,12 @@ class Decryptor:
     def decrypt(self, input_file_path, private_key_path,
                 encrypted_key_path, output_file_path):
         """
+        Main decryption method that handles the complete decryption process
 
-        :param input_file_path:
-        :param private_key_path:
-        :param encrypted_key_path:
-        :param output_file_path:
-        :return:
+        :param input_file_path: Path to the encrypted input file
+        :param private_key_path: Path to the RSA private key file
+        :param encrypted_key_path: Path to the encrypted symmetric key file
+        :param output_file_path: Path to save the decrypted output file
         """
         try:
             # decrypt sym key

@@ -11,8 +11,9 @@ from cryptography.hazmat.backends import default_backend
 class KeyGenerator:
     def __init__(self, symmetric_key_length=256):
         """
+        Initialize the key generator with specified symmetric key length
 
-        :param symmetric_key_length:
+        :param symmetric_key_length: Length of symmetric key in bits (128, 192, or 256)
         """
         if symmetric_key_length not in [128, 192, 256]:
             raise ValueError("Key length must be 128, 192 or 256 bit")
@@ -20,11 +21,19 @@ class KeyGenerator:
         self.backend = default_backend()
 
     def generate_symmetric_key(self):
-        """ """
+        """
+        Generates a random symmetric key for Camellia encryption
+
+        :return: Randomly generated symmetric key of specified length
+        """
         return os.urandom(self.symmetric_key_length // 8)
 
     def generate_asymmetric_key(self):
-        """ """
+        """
+        Generates RSA public/private key pair
+
+        :return: (private_key, public_key) RSA key pair
+        """
         try:
             private_key = rsa.generate_private_key(
                 public_exponent=65537,
@@ -39,12 +48,12 @@ class KeyGenerator:
     @staticmethod
     def serialize_keys(private_key, public_key, private_path, public_path):
         """
+        Serializes RSA keys to PEM format files
 
-        :param private_key:
-        :param public_key:
-        :param private_path:
-        :param public_path:
-        :return:
+        :param private_key: RSA private key to serialize
+        :param public_key: RSA public key to serialize
+        :param private_path: File path to save private key
+        :param public_path: File path to save public key
         """
         try:
             # serialize private key
@@ -67,11 +76,11 @@ class KeyGenerator:
     @staticmethod
     def encrypt_symmetric_key(symmetric_key, public_key, output_path):
         """
+        Encrypts symmetric key with RSA public key and saves to file
 
-        :param symmetric_key:
-        :param public_key:
-        :param output_path:
-        :return:
+        :param symmetric_key: Symmetric key to encrypt
+        :param public_key: RSA public key for encryption
+        :param output_path: File path to save encrypted key
         """
         try:
             encrypted_key = public_key.encrypt(
@@ -90,10 +99,11 @@ class KeyGenerator:
     def generate_save_keys(self, encrypted_sym_key_path,
                            public_key_path, private_key_path):
         """
+        Complete key generation and saving workflow
 
-        :param encrypted_sym_key_path:
-        :param public_key_path:
-        :param private_key_path:
+        :param encrypted_sym_key_path: Path to save encrypted symmetric key
+        :param public_key_path: Path to save public RSA key
+        :param private_key_path: Path to save private RSA key
         :return:
         """
         try:
