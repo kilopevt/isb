@@ -1,8 +1,6 @@
 import argparse
 
-from key_generator import KeyGenerator
-from encryptor import Encryptor
-from decryptor import Decryptor
+from cryptosystem import CryptoSystem
 
 
 def parsing():
@@ -52,28 +50,28 @@ def main():
 
     try:
         if args.command == 'generate':
-            kg = KeyGenerator(args.key_length)
-            kg.generate_save_keys(
+            CryptoSystem.generate_keys(
+                args.key_length,
                 args.encrypted_sym_key,
                 args.public_key,
                 args.private_key
             )
+
         elif args.command == 'encrypt':
-            encryptor = Encryptor()
-            encryptor.encrypt(
+            CryptoSystem.encrypt_file(
                 args.input_file,
+                args.output_file,
                 args.private_key,
                 args.encrypted_sym_key,
-                args.output_file
-            )
+                )
+
         elif args.command == 'decrypt':
-            decryptor = Decryptor()
-            decryptor.decrypt(
+            CryptoSystem.decrypt_file(
                 args.input_file,
+                args.output_file,
                 args.private_key,
-                args.encrypted_sym_key,
-                args.output_file
-            )
+                args.encrypted_sym_key
+                )
         else:
             parser.print_help()
     except Exception as e:
@@ -82,6 +80,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
